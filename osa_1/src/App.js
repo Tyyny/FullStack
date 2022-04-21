@@ -2,12 +2,12 @@ const Header = (props) => { //renders the name of the course
   return (
     <div>
       <h1>{props.course}</h1>
+      <h1>:_DD</h1>
     </div>
   )
 }
 
 const Content = (props) => { //renders the parts and their number of exercises
-  console.log(props)
   return (
     <div>
       <Part part={props.parts[0].name} exercises={props.parts[0].exercises}/>
@@ -51,6 +51,8 @@ const App = () => {
       }
     ]
   }
+
+  
 
   return (
     <div>
