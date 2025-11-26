@@ -2,6 +2,16 @@ import { useState } from 'react'
 
 const Button = ({ onClick, text }) => <button onClick={onClick}>{text}</button>
 
+
+const Luku = () => {
+  const i = Math.floor(Math.random()*(7-0 +1))
+  
+  return i
+}
+  
+  const votes = Array(8).fill(0)
+
+ 
 const App = () => {
   const anecdotes = [
     'If it hurts, do it more often.',
@@ -13,13 +23,27 @@ const App = () => {
     'Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blood tests when dianosing patients.',
     'The only way to go fast, is to go well.'
   ]
-   
-  const [selected, setSelected] = useState(0)
 
+
+
+  const [selected, setSelected] = useState(0)
+  const [counter, setCounter] = useState(0)
+  const max = votes.indexOf(votes.reduce((a, b) => Math.max(a, b), -Infinity))
+
+  
   return (
     <div>
+      <h2>Anecdote of the day</h2>
       {anecdotes[selected]}
-      <Button onClick={() => setSelected(selected + 1)} text='next anecdote' />
+      <div>has {votes[selected]} votes</div>
+      <div>
+          <Button onClick={() => setSelected(Luku(selected))} text='next anecdote' />
+          <Button onClick={() => setCounter(votes[selected] += 1)} text='vote' />
+      </div>
+      <h2>Anecdote with most votes</h2>
+      {anecdotes[max]}
+      <div>has {votes[max]} votes</div>
+      
     </div>
   )
 }
